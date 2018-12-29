@@ -1,0 +1,1 @@
+This is a collection of all projects that I have done under Coursera Data Science Specialization by Johns Hopkins University
