@@ -1,0 +1,44 @@
+---
+title: "R Markdown and Leaflet Submit project"
+author: "Abhinav Agarwal"
+date: "8 December 2018"
+output: html_document
+---
+
+
+# Introduction
+This is a Coursera project in Developing Data Products course
+Create a web page using R Markdown that features a map created with Leaflet.
+
+Host your webpage on either GitHub Pages, RPubs, or NeoCities.
+
+Your webpage must contain the date that you created the document, and it must contain a map created with Leaflet. We would love to see you show off your creativity!
+
+# Data plotted
+
+
+The data used comes from https://simplemaps.com/data/world-cities
+
+This data shows about 13,000 cities around the world. 
+
+```{r}
+data<-read.csv("worldcities.csv", header=TRUE, sep=",")
+
+library(leaflet)
+```
+
+```{r}
+my_map <- data %>%
+        leaflet() %>%
+        addTiles() %>%
+        setView(lng = 0, lat = 0,zoom=1) %>%
+
+        addCircleMarkers(popup = data$city, 
+                   lng = data$lng, 
+                   lat = data$lat,radius = 0.05) 
+        
+
+my_map
+```
+
+

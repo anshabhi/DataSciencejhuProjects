@@ -1,0 +1,40 @@
+---
+title: "R Markdown Presentation & Plotly"
+author: "Abhinav Agarwal"
+date: "8 December 2018"
+output: ioslides_presentation
+autosize : true
+---
+
+## Introduction
+
+This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+This is a Coursera project.
+
+Create a web page presentation using R Markdown that features a plot created with Plotly. Host your webpage on either GitHub Pages, RPubs, or NeoCities. Your webpage must contain the date that you created the document, and it must contain a plot created with Plotly. We would love to see you show off your creativity!
+
+
+## Slide with Code
+
+```{r}
+summary(mtcars)
+```
+
+## Slide with Plotly
+
+```{r echo=FALSE}
+suppressMessages(library(plotly))
+suppressMessages(library(ggplot2))
+mtcars$cyl <- as.factor(mtcars$cyl)
+mtcars$am <- factor(mtcars$am, labels = c("Manual", "Automatic"))
+g <- ggplot(mtcars, aes(mpg, fill = as.factor(cyl)))+
+  geom_histogram(binwidth = 1) + 
+  ggtitle("Histogram of miles per gallon from MTCARS") +
+  facet_wrap(~am) 
+ggplotly(g)
+```
+
+## End
+
+Thank You!

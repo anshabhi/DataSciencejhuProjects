@@ -1,0 +1,76 @@
+---
+title: "Shiny Application and Reproducible Pitch"
+author: "Abhinav Agarwal"
+date: "9 December 2018"
+output: "ioslides_presentation"
+---
+
+## Introduction
+
+### Old Faithful Geyser Data
+   Waiting time between eruptions and the duration of the eruption
+     for the Old Faithful geyser in Yellowstone National Park, Wyoming,
+     USA.
+
+   A data frame with 272 observations on 2 variables.
+
+For more details: https://www.stat.cmu.edu/~larry/all-of-statistics/=data/faithful.dat
+
+
+This application plots a histogram between eruptions and waiting time, with the number of bins as specified by the user.
+
+The app is available at https://anshabhi.shinyapps.io/Shiny/ 
+
+## ui.R
+```{}
+library(shiny)
+# Define UI for application that draws a histogram
+shinyUI(fluidPage(
+  # Application title
+  titlePanel("Old Faithful Geyser Data"),
+  # Sidebar with a slider input for number of bins 
+  sidebarLayout(
+    sidebarPanel( 
+       sliderInput("bins",
+                   "Number of bins:",
+                   min = 1,
+                   max = 50,
+                   value = 30)
+    ),
+    # Show a plot of the generated distribution
+    mainPanel(
+       plotOutput("distPlot")
+    ))))
+
+```
+
+## server.R
+
+```{}
+library(shiny)
+# Define server logic required to draw a histogram
+shinyServer(function(input, output) {
+   
+  output$distPlot <- renderPlot({
+    
+    # generate bins based on input$bins from ui.R
+    x    <- faithful[, 2] 
+    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    
+    # draw the histogram with the specified number of bins
+    hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    
+  })
+  
+})
+
+```
+
+
+## Finishing Notes
+
+This Pitch was done in R Presenter, and hosted on Github Pages.
+
+
+Thanks for reviewing!
+

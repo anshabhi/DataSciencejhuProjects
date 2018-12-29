@@ -1,0 +1,127 @@
+---
+title: "Practical Machine Learning Course Project"
+author: "Abhinav Agarwal"
+date: "6 December 2018"
+output: html_document
+---
+
+# Synopsis
+
+For this project, we are given data from accelerometers on the belt, forearm, arm, and dumbell of 6 research study participants. Our training data consists of accelerometer data and a label identifying the quality of the activity the participant was doing. Our testing data consists of accelerometer data without the identifying label. Our goal is to predict the labels for the test set observations.
+
+More information is available from the website here: http://groupware.les.inf.puc-rio.br/har (Weight Lifting Exercise Dataset).
+
+
+# Data Preparation
+
+To load the datasets we execute:
+
+```{r}
+suppressMessages(library(caret))
+
+training <- read.csv('pml-training.csv', sep = ",")
+testing <-read.csv('pml-testing.csv', sep = ",")
+
+
+```
+
+## Partioning the training set into two
+
+Partioning Training data set into two data sets, 60% for Training, 40% for Testing:
+
+```{r}
+
+inTrain <- createDataPartition(y=training$classe, p=0.6, list=FALSE)
+myTraining <- training[inTrain, ]; myTesting <- training[-inTrain, ]
+dim(myTraining); dim(myTesting)
+
+```
+
+## Cleaning the data
+
+Reducing the number of features by removing variables with nearly zero variance, variables that are almost always NA, and variables that don't make intuitive sense for prediction. We decide which ones to remove by analyzing myTraining, and perform the identical removals on myTesting:
+
+```{r}
+
+# remove variables with nearly zero variance
+nzv <- nearZeroVar(myTraining)
+myTraining <- myTraining[, -nzv]
+myTesting <- myTesting[, -nzv]
+
+# remove variables that are almost always NA
+mostlyNA <- sapply(myTraining, function(x) mean(is.na(x))) > 0.95
+myTraining <- myTraining[, mostlyNA==F]
+myTesting <- myTesting[, mostlyNA==F]
+
+# remove variables that don't make intuitive sense for prediction (X, user_name, raw_timestamp_part_1, raw_timestamp_part_2, cvtd_timestamp), which happen to be the first five variables
+myTraining <- myTraining[, -(1:5)]
+myTesting <- myTesting[, -(1:5)]
+
+```
+
+
+# Implementing Machine Learning Algorithms
+
+## Decision Tree
+
+Here, we make a decision tree and plot it using fancy plot library.
+
+```{r}
+library(rpart)
+library(rattle)
+modFitA1 <- rpart(classe ~ ., data=myTraining, method="class")
+fancyRpartPlot(modFitA1)
+
+```
+
+## Random Forests
+
+We use Random Forests because it can deal with lots of highly correlated features. We also creat a trainControl object to specify 10-Fold Cross Validation one time and pass it to the train function. Then our code to create the model is:
+
+```{r}
+
+cvCtrl <- trainControl('cv', 10, savePred=T)
+set.seed(111)
+ model <- train(classe ~ ., data = myTraining, method = 'rf', trControl = cvCtrl)
+model 
+```
+From the results we see that the final model has 27 randomly selected predictors of the 53 submitted, and a accuracy of 99.72% from our 10-Fold Cross Validation. Random Forests yielded better Results, as expected!
+
+# Making Test Set Predictions
+
+Now, we use the model fit on ptrain to predict the label for the observations in ptest, and write those predictions to individual files:
+
+```{r}
+# predict on test set
+preds <- predict(model, newdata=testing)
+
+# convert predictions to character vector
+preds <- as.character(preds)
+
+# create function to write predictions to files
+pml_write_files <- function(x) {
+    n <- length(x)
+    for(i in 1:n) {
+        filename <- paste0("problem_id_", i, ".txt")
+        write.table(x[i], file=filename, quote=F, row.names=F, col.names=F)
+    }
+}
+
+# create prediction files to submit
+pml_write_files(preds)
+```
+
+The generated results gave 100% score in the following quiz on Coursera
+
+# References 
+
+The following references were used in this report:
+
+
+[Practical Machine Learning Course Project by Ricardo Silva Carvalho](http://ricardoscr.github.io/practicalmachinelearning/)
+
+
+[Final Project Report - Practical Machine Learning Course by Unknown](https://rstudio-pubs-static.s3.amazonaws.com/29426_041c5ccb9a6a4bedb204e33144bb0ad4.html)
+
+
+[Practical Machine Learning - Course Project by justmarkham](http://justmarkham.github.io/PracticalMachineLearning/)
