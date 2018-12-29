@@ -1,0 +1,63 @@
+---
+title: "Data Science Specialization"
+author: "Abhinav Agarwal"
+output: html_document
+---
+
+Welcome here! This page has been designed to elaborate the courses taken in Data Science Specialization. 9 out of 10 courses in the Specialization have been completed, with the 10th one being Capstone Project,which is expected to be completed in January 2019.
+
+### 1. The Data Scientist's Toolbox
+ Introduction to the main tools and ideas in the data scientist's toolbox
+ 
+[Course Project](https://github.com/anshabhi/datasciencecoursera/tree/master/1_DataScientistToolbox) 
+[Certificate](https://www.coursera.org/account/accomplishments/certificate/RV35RHYC6F92)
+
+### 2. R Programming
+Learnt how to program in R and how to use R for effective data analysis
+
+[Course Project](https://github.com/anshabhi/datasciencecoursera/tree/master/2_RProgramming)
+[Certificate](https://www.coursera.org/account/accomplishments/records/84W9RR75JJTS)
+
+
+### 3. Getting and Cleaning Data
+This course covers the basic ways that data can be obtained. The course covered obtaining data from the web, from APIs, from databases and from colleagues in various formats. It also covered the basics of data cleaning and how to make data "tidy". 
+
+[Course Project](https://github.com/anshabhi/datasciencecoursera/tree/master/3_GettingData)
+[Certificate](https://www.coursera.org/account/accomplishments/records/K3GSD9VTA7PW)
+
+### 4. Exploratory Data Analysis
+This course covers the essential exploratory techniques for summarizing data.
+
+[Course Project](https://github.com/anshabhi/datasciencecoursera/tree/master/4_ExploratoryAnalysis)
+[Certificate](https://www.coursera.org/account/accomplishments/records/9SDW2XLE6VBV)
+
+### 5. Reproducible Research
+This course focuses on the concepts and tools behind reporting modern data analyses in a reproducible manner.
+
+[Course Project](https://github.com/anshabhi/datasciencecoursera/tree/master/5_ReproducibleResearch)
+[Certificate](https://www.coursera.org/account/accomplishments/records/4TDY4NLQM8DZ)
+
+### 6. Statistical Interference
+Statistical inference is the process of drawing conclusions about populations or scientific truths from data. 
+
+[Course Project](https://github.com/anshabhi/datasciencecoursera/tree/master/6_StatisticalInterference)
+[Certificate](https://www.coursera.org/account/accomplishments/records/Z8JL3YMTETU5)
+
+### 7. Regression Models
+Learnt fundamentals for the application and practice of regression.
+
+[Course Project](https://github.com/anshabhi/datasciencecoursera/tree/master/7_RegressionModels)
+[Certificate](https://www.coursera.org/account/accomplishments/records/93XNKX9KHYNN)
+
+### 8. Practical Machine Learning
+ This course covered the basic components of building and applying prediction functions with an emphasis on practical applications. 
+
+
+[Course Project](https://github.com/anshabhi/practical-machine-learning)
+[Certificate](https://www.coursera.org/account/accomplishments/records/D3FSLLQYZ6LW)
+
+### 9. Developing Data Products
+This course covers the basics of creating data products using Shiny, R packages, and interactive graphics. 
+
+[Course Project](https://github.com/anshabhi/datasciencecoursera/tree/master/9_DevelopingDataProducts)
+[Certificate](https://www.coursera.org/account/accomplishments/certificate/NME7BCC6NVNL)
