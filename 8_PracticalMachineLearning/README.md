@@ -2,6 +2,5 @@
 
 go to project.rmd or index.html
 
-https://anshabhi.github.io/practical-machine-learning/index.html
-
-https://anshabhi.github.io/practical-machine-learning/project.rmd
+https://anshabhi.github.io/datasciencecoursera/8_PracticalMachineLearning/
+https://anshabhi.github.io/datasciencecoursera/8_PracticalMachineLearning/project.rmd
